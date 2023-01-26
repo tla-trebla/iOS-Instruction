@@ -12,6 +12,7 @@
 		50AB378E2982A839005DDD6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50AB378D2982A839005DDD6B /* Assets.xcassets */; };
 		50AB37912982A839005DDD6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AB378F2982A839005DDD6B /* LaunchScreen.storyboard */; };
 		50AB379C2982A8CA005DDD6B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB379B2982A8CA005DDD6B /* MainViewController.swift */; };
+		50AB37A22982AB3A005DDD6B /* Instructions in Frameworks */ = {isa = PBXBuildFile; productRef = 50AB37A12982AB3A005DDD6B /* Instructions */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50AB37A22982AB3A005DDD6B /* Instructions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +90,9 @@
 			dependencies = (
 			);
 			name = "iOS-Instruction";
+			packageProductDependencies = (
+				50AB37A12982AB3A005DDD6B /* Instructions */,
+			);
 			productName = "iOS-Instruction";
 			productReference = 50AB37812982A838005DDD6B /* iOS-Instruction.app */;
 			productType = "com.apple.product-type.application";
@@ -116,6 +121,9 @@
 				Base,
 			);
 			mainGroup = 50AB37782982A838005DDD6B;
+			packageReferences = (
+				50AB37A02982AB3A005DDD6B /* XCRemoteSwiftPackageReference "Instructions" */,
+			);
 			productRefGroup = 50AB37822982A838005DDD6B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -360,6 +368,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		50AB37A02982AB3A005DDD6B /* XCRemoteSwiftPackageReference "Instructions" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ephread/Instructions";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		50AB37A12982AB3A005DDD6B /* Instructions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 50AB37A02982AB3A005DDD6B /* XCRemoteSwiftPackageReference "Instructions" */;
+			productName = Instructions;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 50AB37792982A838005DDD6B /* Project object */;
 }
