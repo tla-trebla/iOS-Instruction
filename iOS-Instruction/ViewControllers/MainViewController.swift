@@ -38,6 +38,7 @@ class MainViewController: UIViewController {
     
     private func setupLayout() {
         orderMethodView.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             orderMethodView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             orderMethodView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
