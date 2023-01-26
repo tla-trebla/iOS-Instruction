@@ -6,8 +6,13 @@
 //
 
 import UIKit
+import Instructions
 
-final class MainCoachMarkBodyView: UIView {
+final class MainCoachMarkBodyView: UIView, CoachMarkBodyView, CoachMarkSkipView {
+    
+    var nextControl: UIControl? { return self.nextButton }
+    var skipControl: UIControl? { return self.skipButton }
+    weak var highlightArrowDelegate: CoachMarkBodyHighlightArrowDelegate?
     
     private lazy var explanation: UILabel = {
         let label = UILabel()
@@ -42,9 +47,15 @@ final class MainCoachMarkBodyView: UIView {
         button.titleLabel?.font = .systemFont(ofSize: 12)
         button.setTitle("Skip", for: .normal)
         button.setTitleColor(.gray, for: .normal)
+        button.isUserInteractionEnabled = true
+        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         
         return button
     }()
+    
+    @objc private func buttonTapped() {
+        print("The skipButton is tapped")
+    }
     
     private lazy var nextButton: UIButton = {
         let button = UIButton()
@@ -53,6 +64,7 @@ final class MainCoachMarkBodyView: UIView {
         button.setTitle("Next", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.contentEdgeInsets = .init(top: 4, left: 8, bottom: 4, right: 8)
+        button.isUserInteractionEnabled = true
         
         return button
     }()
@@ -76,6 +88,7 @@ final class MainCoachMarkBodyView: UIView {
     }
     
     private func setupLayouts() {
+        translatesAutoresizingMaskIntoConstraints = false
         explanation.translatesAutoresizingMaskIntoConstraints = false
         hStackView.translatesAutoresizingMaskIntoConstraints = false
         skipButton.translatesAutoresizingMaskIntoConstraints = false
@@ -90,19 +103,6 @@ final class MainCoachMarkBodyView: UIView {
             hStackView.leftAnchor.constraint(equalTo: leftAnchor, constant: 12),
             hStackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -12),
             hStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 8),
-            
-//            countPage.leftAnchor.constraint(equalTo: leftAnchor, constant: 12),
-//            countPage.centerYAnchor.constraint(equalTo: nextButton.centerYAnchor),
-            
-//            skipButton.leftAnchor.constraint(equalTo: countPage.rightAnchor, constant: 20),
-//            skipButton.centerYAnchor.constraint(equalTo: nextButton.centerYAnchor),
-//            skipButton.widthAnchor.constraint(equalToConstant: 40),
-            
-//            nextButton.topAnchor.constraint(equalTo: explanation.bottomAnchor, constant: 8),
-//            nextButton.leftAnchor.constraint(equalTo: skipButton.rightAnchor, constant: 8),
-//            nextButton.rightAnchor.constraint(equalTo: rightAnchor, constant: 12),
-//            nextButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
-//            nextButton.widthAnchor.constraint(equalToConstant: 40)
         ])
     }
 }

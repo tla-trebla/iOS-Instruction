@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import Instructions
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, CoachMarksControllerDelegate {
+    
+    let coachMarksController = CoachMarksController()
     
     private lazy var orderMethodView: OrderMethodView = {
         let orderMethodView = OrderMethodView()
@@ -18,10 +21,24 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.coachMarksController.dataSource = self
+        
         setupMainView()
         setupNavigationBar()
         setupViews()
         setupLayout()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.coachMarksController.start(in: .window(over: self))
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.coachMarksController.stop()
     }
     
     private func setupMainView() {
@@ -44,5 +61,26 @@ class MainViewController: UIViewController {
             orderMethodView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
             orderMethodView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
         ])
+    }
+}
+
+extension MainViewController: CoachMarksControllerDataSource {
+    func numberOfCoachMarks(for coachMarksController: Instructions.CoachMarksController) -> Int {
+        return 1
+    }
+    
+    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkAt index: Int) -> CoachMark {
+        return coachMarksController.helper.makeCoachMark(for: orderMethodView)
+    }
+    
+    func coachMarksController(
+        _ coachMarksController: CoachMarksController,
+        coachMarkViewsAt index: Int,
+        madeFrom coachMark: CoachMark
+    ) -> (bodyView: (UIView & CoachMarkBodyView), arrowView: (UIView & CoachMarkArrowView)?) {
+        
+        let bodyView = MainCoachMarkBodyView()
+
+        return (bodyView: bodyView, arrowView: nil)
     }
 }
