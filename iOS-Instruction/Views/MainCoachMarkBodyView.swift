@@ -71,12 +71,18 @@ final class MainCoachMarkBodyView: UIView, CoachMarkBodyView, CoachMarkSkipView 
     
     init() {
         super.init(frame: .zero)
+        setupMainView()
         setupViews()
         setupLayouts()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupMainView() {
+        backgroundColor = .white
+        layer.cornerRadius = 8
     }
     
     private func setupViews() {
@@ -102,7 +108,7 @@ final class MainCoachMarkBodyView: UIView, CoachMarkBodyView, CoachMarkSkipView 
             hStackView.topAnchor.constraint(equalTo: explanation.bottomAnchor, constant: 8),
             hStackView.leftAnchor.constraint(equalTo: leftAnchor, constant: 12),
             hStackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -12),
-            hStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 8),
+            hStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
         ])
     }
 }

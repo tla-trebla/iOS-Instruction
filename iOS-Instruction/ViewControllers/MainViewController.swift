@@ -22,6 +22,7 @@ class MainViewController: UIViewController, CoachMarksControllerDelegate {
         super.viewDidLoad()
         
         self.coachMarksController.dataSource = self
+        self.coachMarksController.overlay.isUserInteractionEnabled = true
         
         setupMainView()
         setupNavigationBar()
@@ -80,7 +81,9 @@ extension MainViewController: CoachMarksControllerDataSource {
     ) -> (bodyView: (UIView & CoachMarkBodyView), arrowView: (UIView & CoachMarkArrowView)?) {
         
         let bodyView = MainCoachMarkBodyView()
+        let arrowView = CoachMarkArrowDefaultView(orientation: .top)
 
-        return (bodyView: bodyView, arrowView: nil)
+        return (bodyView: bodyView,
+                arrowView: arrowView)
     }
 }
